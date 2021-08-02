@@ -5,9 +5,17 @@
   "repository": "https://github.com/1-EXON/Desolved",
   "author": "시혁 박 <exon.indiv@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "discord.js": "^12.5.3",
+    "fs": "^0.0.1-security",
     "fs-extra": "^10.0.0",
+    "node-fetch": "^2.6.1",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.12",
+    "@types/node": "^16.4.10",
+    "@types/node-fetch": "^2.5.12"
   }
 }
