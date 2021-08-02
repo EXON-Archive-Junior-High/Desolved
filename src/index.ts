@@ -24,7 +24,7 @@ const get = async (str: string) => await (await fetch(str)).json()
 client.on('ready', async () => {
     console.log('[*] Ready')
     
-    
+    client.user.setActivity('\"' + prefix + ' help\" 를 입력하세요', { type: 'PLAYING' })
 })
 
 client.on('message', async (msg) => {
