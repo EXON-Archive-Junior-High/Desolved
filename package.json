@@ -10,11 +10,14 @@
     "discord.js": "^12.5.3",
     "fs": "^0.0.1-security",
     "fs-extra": "^10.0.0",
+    "knex": "^0.95.9",
+    "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.12",
+    "@types/knex": "^0.16.1",
     "@types/node": "^16.4.10",
     "@types/node-fetch": "^2.5.12"
   }

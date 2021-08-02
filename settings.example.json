@@ -1,3 +1,12 @@
 {
-    "bot_token": ""
+    "bot_token": "",
+    "prefix": ".dv",
+    "mariadb": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "database": "",
+        "table": ""
+    }
 }
