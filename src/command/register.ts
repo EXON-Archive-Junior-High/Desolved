@@ -15,8 +15,8 @@ export default async function register(msg: Message, prefix: string) {
         }
     } catch(err) {
         msg.channel.send(new MessageEmbed({
-            title: '❌ \"' + msg_list[1] + '\" 이라는 유저가 존재하지 않습니다.',
-            description: '정확한 아이디로 다시 가입해주세요.',
+            title: '❌ 오류가 생겼습니다.',
+            description: '\"' + msg_list[1] + '\" 가 정확한 아이디인지 확인해주세요.',
             color: '#FF0000'
         }))
     }
