@@ -2,6 +2,7 @@ import path from 'path'
 import fetch from 'node-fetch'
 import { Client } from 'discord.js'
 import { readJSONSync } from 'fs-extra'
+// import schedule from 'node-schedule'
 
 import register from './command/register'
 import contest from './command/codeforces/contest'
@@ -9,6 +10,9 @@ import contest from './command/codeforces/contest'
 const PATH = path.resolve()
 const { bot_token : token, mariadb, prefix } = readJSONSync(PATH + '/settings.json')
 export const client = new Client()
+// const job = schedule.scheduleJob('0 0 18 * * *', () => {
+//     contest(client, '818059613756325921')
+// })
 const db = require('knex') ({
     client: 'mysql2',
     connection: {
