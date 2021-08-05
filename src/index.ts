@@ -4,6 +4,7 @@ import { Client } from 'discord.js'
 import { readJSONSync } from 'fs-extra'
 
 import register from './command/register'
+import contest from './command/codeforces/contest'
 
 const PATH = path.resolve()
 const { bot_token : token, mariadb, prefix } = readJSONSync(PATH + '/settings.json')
@@ -23,7 +24,7 @@ const get = async (str: string) => await (await fetch(str)).json()
 
 client.on('ready', async () => {
     console.log('[*] Ready')
-    
+    contest(client, '818059613756325921')
     client.user.setActivity('\"' + prefix + ' help\" 를 입력하세요', { type: 'PLAYING' })
 })
 
