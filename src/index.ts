@@ -5,6 +5,7 @@ import { readJSONSync } from 'fs-extra'
 import schedule from 'node-schedule'
 
 import register from './command/register'
+import match from './command/match/match'
 import contest from './command/codeforces/contest'
 
 const PATH = path.resolve()
@@ -30,6 +31,7 @@ client.on('ready', async () => {
     console.log('[*] Ready')
     client.user.setActivity('\"' + prefix + ' help\" 를 입력하세요', { type: 'PLAYING' })
     contest(client, '818059613756325921')
+    match(client, '818059613756325921', ['exon', 'lighton'], 'b5..b1')
 })
 
 client.on('message', async (msg) => {
