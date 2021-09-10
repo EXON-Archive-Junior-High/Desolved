@@ -9,13 +9,23 @@ export default async function contest(client: Client, channel_id: string) {
     const contests: any = []
     data.result.forEach((e: any) => {
         if (e.phase !== 'BEFORE') return false
-        let date: Date = new Date(1970, 0, 1)
+        const date: Date = new Date(1970, 0, 1)
         date.setSeconds(date.getSeconds() + +e.startTimeSeconds + 9 * 60 * 60)
-        const date_kr: string = date.getFullYear() + '년 ' + (+date.getMonth()+1) + '월 ' + date.getDate() + '일 ' + date.getHours() + '시 ' + date.getMinutes() + '분';
+        const until: Date = new Date()
+        const msec = date.getTime() - until.getTime()
+        const days = Math.floor(msec / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((msec - (days * 1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const minutes = Math.floor((msec - (days * 1000 * 60 * 60 * 24 + hours * 1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((msec - (days * 1000 * 60 * 60 * 24 + hours * 1000 * 60 * 60 + minutes * 1000 * 60)) / 1000)
+        const date_kr: string = days + '일 '  + hours + '시간 ' + minutes + '분 ' + seconds + '초 남음'
         contests.push(new MessageEmbed({
             title: e.name,
             url: 'https://codeforces.com/contests/' + e.id,
-            description: date_kr
+            description: date_kr,
+            footer: {
+                text: date.getFullYear() + '년 ' + (+date.getMonth()+1) + '월 ' + date.getDate() + '일 ' + date.getHours() + '시 ' + date.getMinutes() + '분'
+            },
+            timestamp: new Date()
         }))
     })
     

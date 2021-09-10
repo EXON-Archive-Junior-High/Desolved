@@ -8,5 +8,6 @@
         "password": "",
         "database": "",
         "table": ""
-    }
+    },
+    "codeforces_time": "0 0 18 * * *"
 }
