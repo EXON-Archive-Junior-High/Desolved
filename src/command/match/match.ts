@@ -19,10 +19,11 @@ export default async function match(client: Client, channel_id: string, users: s
     while (true) {
         const problems = await get(`https://solved.ac/api/v3/search/problem?query=tier%3A${level}&page=${i}&sort%3Arandom`)
         let success: boolean = false
-        problems.items.forEach((problem: any) => {
+        problems.items.forEach(async (problem: any) => {
             if (!problemList.has(problem.problemId)) {
-                success = true;
-                (client.channels.cache.get(channel_id) as TextChannel).send(problem.problemId)
+                success = true
+                await (client.channels.cache.get(channel_id) as TextChannel).send(problem.problemId)
+                return false
             }
         })
         if (success) break
