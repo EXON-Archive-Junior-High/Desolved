@@ -13,6 +13,7 @@ export default async function help(msg: Message, prefix: string) {
                 name: `${prefix} cp`,
                 value: '코드포스 대회 알림 명령어'
             }
-        ]
+        ],
+        color: '#ffffff'
     }))
 }
