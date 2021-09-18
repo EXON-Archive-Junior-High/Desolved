@@ -3,7 +3,6 @@ import fetch from 'node-fetch'
 
 const get = async (str: string) => await (await fetch(str)).json()
 
-
 export default async function getProblemsByLevel(level: string) {
     let i = 1
     while (true) {
@@ -11,9 +10,9 @@ export default async function getProblemsByLevel(level: string) {
         problems.items.forEach(async (problem: any) => {
             fs.appendFileSync('./data.txt', `\t\t\t"${problem.problemId}",\n`)
         })
-        if (!problems.items) break
+        if (!problems.items.length) break
         i++
     }
 }
 
-getProblemsByLevel('b4')
+getProblemsByLevel('b1')
