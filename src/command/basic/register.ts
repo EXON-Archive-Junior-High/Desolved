@@ -13,7 +13,7 @@ export default async function register(msg: Message, prefix: string) {
                 color: '#00FF00'
             }))
         }
-    } catch(err) {
+    } catch (err) {
         msg.channel.send(new MessageEmbed({
             title: '❌ 오류가 생겼습니다.',
             description: '\"' + msg_list[1] + '\" 가 정확한 아이디인지 확인해주세요.',

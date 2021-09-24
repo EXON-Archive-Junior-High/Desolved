@@ -13,11 +13,13 @@ export default async function contest(client: Client, channel_id: string) {
         date.setSeconds(date.getSeconds() + +e.startTimeSeconds + 9 * 60 * 60)
         const until: Date = new Date()
         const msec = date.getTime() - until.getTime()
-        const days = Math.floor(msec / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((msec - (days * 1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((msec - (days * 1000 * 60 * 60 * 24 + hours * 1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((msec - (days * 1000 * 60 * 60 * 24 + hours * 1000 * 60 * 60 + minutes * 1000 * 60)) / 1000)
+        const hour2msec = 1000 * 60 * 60
+        const days = Math.floor(msec / (hour2msec * 24))
+        const hours = Math.floor((msec - (days * hour2msec * 24)) / hour2msec)
+        const minutes = Math.floor((msec - (days * hour2msec * 24 + hours * hour2msec)) / (1000 * 60))
+        const seconds = Math.floor((msec - (days * hour2msec * 24 + hours * hour2msec + minutes * 1000 * 60)) / 1000)
         const date_kr: string = days + '일 '  + hours + '시간 ' + minutes + '분 ' + seconds + '초 남음'
+        if (days > 10) return
         contests.push(new MessageEmbed({
             title: e.name,
             url: 'https://codeforces.com/contests/' + e.id,
@@ -29,10 +31,5 @@ export default async function contest(client: Client, channel_id: string) {
         }))
     })
     
-    for (let i = 0; i < contests.length; i++) {
-        setTimeout(async () => {
-            (client.channels.cache.get(channel_id) as TextChannel).send(contests.pop())
-        }, 1000)
-    }
-    
+    for (let i = 0; i < contests.length; i++) setTimeout(async () => await (client.channels.cache.get(channel_id) as TextChannel).send(contests.pop()), 1000)
 }
