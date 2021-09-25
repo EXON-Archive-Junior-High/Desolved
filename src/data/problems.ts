@@ -13,4 +13,4 @@ export default async function getProblemsByLevel(level: string) {
     }
 }
 
-getProblemsByLevel('s5')
+getProblemsByLevel('s4')
