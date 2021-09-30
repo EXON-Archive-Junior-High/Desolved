@@ -1,18 +1,22 @@
 import path from 'path'
 import fetch from 'node-fetch'
 import { Client } from 'discord.js'
-import { readJSONSync } from 'fs-extra'
 import schedule from 'node-schedule'
+import { readJSONSync } from 'fs-extra'
+import buttons from 'discord-buttons'
 
 import register from './command/basic/register'
 import help from './command/basic/help'
 import match from './command/match/match'
 import contest from './command/codeforces/contest'
 
+import button from './command/test/button'
+
 const PATH = path.resolve()
 const { bot_token : token, mariadb, prefix, codeforces_time } = readJSONSync(PATH + '/settings.json')
 export const client = new Client()
 const job = schedule.scheduleJob(codeforces_time, () => contest(client, '818059613756325921'))
+buttons(client)
 const db = require('knex') ({
     client: 'mysql2',
     connection: {
@@ -24,8 +28,6 @@ const db = require('knex') ({
     }
 })
 
-const get = async (str: string) => await (await fetch(str)).json()
-
 client.on('ready', async () => {
     console.log('[*] Ready')
     client.user.setActivity('\"' + prefix + ' help\" 를 입력하세요', { type: 'LISTENING' })
@@ -36,8 +38,10 @@ client.on('message', async (msg) => {
     if (!msg.content.startsWith(prefix)) return
     
     if (msg.content.startsWith(prefix + ' help')) help(msg, prefix)
-    if (msg.content.startsWith(prefix + ' register')) await register(msg, prefix)
+    if (msg.content.startsWith(prefix + ' register')) await register(client, msg, prefix)
     if (msg.content.startsWith(prefix + ' cp') || msg.content.startsWith(prefix + ' codeforces')) contest(client, '818059613756325921')
+
+    if (msg.content.startsWith(prefix + ' button')) button(msg, prefix)
 })
 
 client.login(token)

@@ -38,6 +38,13 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
+"@types/node-schedule@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@types/node-schedule/-/node-schedule-1.3.2.tgz#cc7e32c6795cbadc8de03d0e1f86311727375423"
+  integrity sha512-Y0CqdAr+lCpArT8CJJjJq4U2v8Bb5e7ru2nV/NhDdaptCMCRdOL3Y7tAhen39HluQMaIKWvPbDuiFBUQpg7Srw==
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*", "@types/node@^16.4.10":
   version "16.4.10"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.10.tgz#e57e2a54fc6da58da94b3571b1cb456d39f88597"
@@ -111,6 +118,11 @@ denque@^1.4.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/denque/-/denque-1.5.0.tgz#773de0686ff2d8ec2ff92914316a47b73b1c73de"
   integrity sha512-CYiCSgIF1p6EUByQPlGkKnP1M9g0ZV3qMIrqMqZqdwazygIA/YP2vrbcyl1h/WppKJTdl1F85cXIle+394iDAQ==
+
+discord-buttons@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/discord-buttons/-/discord-buttons-4.0.0.tgz#0068ae5cc18cdd30112fca19b4b4c453ccc2ac73"
+  integrity sha512-E/eQX4Ktj7nKwNDsTfCezBNCu73FtPWJfQcpKohfl0jct/ucMUO+7uhL2MhGsZr4SCfojk7OzccAznuntB564w==
 
 discord.js@^12.5.3:
   version "12.5.3"
