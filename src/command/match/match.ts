@@ -4,7 +4,7 @@ import { MessageEmbed, Client, TextChannel } from 'discord.js'
 const get = async (str: string) => await (await fetch(str)).json()
 
 
-export default async function match(client: Client, channel_id: string, users: string[], level: string) {
+export default async function match(client: Client, channel_id: string, users: readonly string[], level: string) {
     let problemList: Set<number> = new Set<number>([])
     let i = 1
     users.forEach(async (user: string) => {
