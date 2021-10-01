@@ -1,22 +1,20 @@
 import path from 'path'
 import fetch from 'node-fetch'
-import { Client } from 'discord.js'
+import { Client, Channel } from 'discord.js'
 import schedule from 'node-schedule'
 import { readJSONSync } from 'fs-extra'
-import buttons from 'discord-buttons'
 
 import register from './command/basic/register'
 import help from './command/basic/help'
 import match from './command/match/match'
 import contest from './command/codeforces/contest'
 
-import button from './command/test/button'
+import button_msg from './command/test/button'
 
 const PATH = path.resolve()
 const { bot_token : token, mariadb, prefix, codeforces_time } = readJSONSync(PATH + '/settings.json')
 export const client = new Client()
 const job = schedule.scheduleJob(codeforces_time, () => contest(client, '818059613756325921'))
-buttons(client)
 const db = require('knex') ({
     client: 'mysql2',
     connection: {
@@ -41,7 +39,11 @@ client.on('message', async (msg) => {
     if (msg.content.startsWith(prefix + ' register')) await register(client, msg, prefix)
     if (msg.content.startsWith(prefix + ' cp') || msg.content.startsWith(prefix + ' codeforces')) contest(client, '818059613756325921')
 
-    if (msg.content.startsWith(prefix + ' button')) button(msg, prefix)
+    if (msg.content.startsWith(prefix + ' button')) button_msg(msg, prefix)
+})
+
+client.on('clickButton', async (button) => {
+    if (button.id === 'button1') console.log('d')
 })
 
 client.login(token)
